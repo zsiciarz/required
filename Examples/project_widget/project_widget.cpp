@@ -10,6 +10,10 @@ int main(int argc, char *argv[])
 
     Required::ProjectWidget w;
     w.setProject(&project);
+
+    project.addFile(argv[0]);
+    project.removeFile(argv[0]);
+
     w.show();
     return a.exec();
 }

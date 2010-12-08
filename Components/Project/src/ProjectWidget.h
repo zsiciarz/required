@@ -18,7 +18,9 @@
 #ifndef PROJECTWIDGET_H
 #define PROJECTWIDGET_H
 
+#include <QMap>
 #include <QTreeWidget>
+#include <QTreeWidgetItem>
 #include <QWidget>
 #include "Project.h"
 
@@ -49,6 +51,10 @@ namespace Required
 
         void closeProject();
 
+    public slots:
+        void addFile(QString filename, QString categoryShortName = "");
+        void removeFile(QString filename, QString categoryShortName = "");
+
     private:
         /**
          * The actual project instance.
@@ -59,6 +65,19 @@ namespace Required
          * The tree widget.
          */
         QTreeWidget* m_treeWidget;
+
+        /**
+         * A register of top-level items corresponding to category identifiers.
+         */
+        QMap<QString, QTreeWidgetItem*> m_categoryItems;
+
+        /**
+         * A register of leaf items corresponding to filenames.
+         */
+        QMap<QString, QTreeWidgetItem*> m_fileItems;
+
+        QTreeWidgetItem* getCategoryItem(QString categoryShortName);
+        QTreeWidgetItem* getFileItem(QString filename);
     };
 }
 
