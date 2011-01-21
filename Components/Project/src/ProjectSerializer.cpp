@@ -19,6 +19,7 @@
 #include "FileCategory.h"
 #include "ProjectException.h"
 #include <QDebug>
+#include <QRegExp>
 #include <QStringList>
 #include <QXmlStreamAttributes>
 
@@ -122,6 +123,7 @@ namespace Required
         {
             writer.writeStartElement("category");
             writer.writeAttribute("short-name", category.shortName());
+            writer.writeAttribute("filename-regexp", category.filenameRegexp().pattern());
             writer.writeCharacters(category.displayedName());
             writer.writeEndElement();
         }
@@ -279,8 +281,9 @@ namespace Required
             return;
 
         QString shortName = reader.attributes().value("short-name").toString();
+        QString regexpPattern = reader.attributes().value("filename-regexp").toString();
         QString displayedName = reader.readElementText();
-        FileCategory::registerCategory(shortName, displayedName);
+        FileCategory::registerCategory(shortName, displayedName, QRegExp(regexpPattern));
 
         if (reader.isEndElement())
             reader.readNext();
