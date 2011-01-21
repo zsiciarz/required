@@ -26,10 +26,12 @@ namespace Required
      *
      * @param shortName category name - used internally for lookup etc.
      * @param displayedName category name to be displayed to the user
+     * @param filenameRegexp regular expression for filename matching
      */
-    FileCategory::FileCategory(QString shortName, QString displayedName):
+    FileCategory::FileCategory(QString shortName, QString displayedName, QRegExp filenameRegexp):
         m_shortName(shortName),
-        m_displayedName(displayedName.isEmpty() ? m_shortName : displayedName)
+        m_displayedName(displayedName.isEmpty() ? m_shortName : displayedName),
+        m_filenameRegexp(filenameRegexp)
     {
     }
 
@@ -40,7 +42,7 @@ namespace Required
      * mapping.
      */
     FileCategory::FileCategory():
-        m_shortName("OTHER"), m_displayedName("Other")
+        m_shortName(""), m_displayedName("Other"), m_filenameRegexp(QRegExp())
     {
     }
 
@@ -55,10 +57,11 @@ namespace Required
      *
      * @param shortName category name - used internally for lookup etc.
      * @param displayedName category name to be displayed to the user
+     * @param filenameRegexp regular expression for filename matching
      */
-    void FileCategory::registerCategory(QString shortName, QString displayedName)
+    void FileCategory::registerCategory(QString shortName, QString displayedName, QRegExp filenameRegexp)
     {
-        FileCategory category(shortName, displayedName);
+        FileCategory category(shortName, displayedName, filenameRegexp);
         // copy-by-value here, since QString members can be safely copied
         s_nameMap[shortName] = category;
     }
@@ -77,5 +80,28 @@ namespace Required
         // as Qt docs states about containers: QMap::value() returns a
         // default-constructed value if the specified key isn't in the map.
         return s_nameMap.value(shortName);
+    }
+
+    /**
+     * Tries to match a category for a given filename.
+     *
+     * For every registered category the filenameRegexp (passed as an argument
+     * to FileCategory constructor) is checked to match the given filename.
+     * When no matching category can be found, returns the default one.
+     *
+     * @param filename filename which will be matched
+     * @return associated category, or the default one
+     */
+    FileCategory FileCategory::getCategoryForFilename(QString filename)
+    {
+        foreach (FileCategory category, s_nameMap)
+        {
+            if (category.matchesFilename(filename))
+            {
+                return category;
+            }
+        }
+
+        return FileCategory();
     }
 }

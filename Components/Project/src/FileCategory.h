@@ -21,6 +21,7 @@
 #include <QList>
 #include <QMap>
 #include <QObject>
+#include <QRegExp>
 #include <QString>
 
 namespace Required
@@ -31,7 +32,8 @@ namespace Required
     class FileCategory
     {
     public:
-        explicit FileCategory(QString shortName, QString displayedName = "");
+        explicit FileCategory(QString shortName, QString displayedName = "",
+                              QRegExp filenameRegexp = QRegExp());
         FileCategory();
 
         /**
@@ -54,8 +56,28 @@ namespace Required
             return m_displayedName;
         }
 
-        static void registerCategory(QString shortName, QString displayedName = "");
+        /**
+         * Returns the regular expression for filename matching.
+         *
+         * @return filename regexp
+         */
+        QRegExp filenameRegexp() const
+        {
+            return m_filenameRegexp;
+        }
+
+        /**
+         * Checks whether the category can be associated with a given filename.
+         */
+        bool matchesFilename(QString filename) const
+        {
+            return m_filenameRegexp.exactMatch(filename);
+        }
+
+        static void registerCategory(QString shortName, QString displayedName = "",
+                                     QRegExp filenameRegexp = QRegExp());
         static FileCategory getCategory(QString shortName);
+        static FileCategory getCategoryForFilename(QString filename);
 
     private:
         /**
@@ -67,6 +89,11 @@ namespace Required
          * Full category name which is displayed to the user.
          */
         QString m_displayedName;
+
+        /**
+         * A pattern for filenames which will be associated with the category.
+         */
+        QRegExp m_filenameRegexp;
 
         /**
          * A mapping of category short names to category objects.
