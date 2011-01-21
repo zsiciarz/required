@@ -39,8 +39,9 @@ namespace Required
     /**
      * Adds a file to the project, possibly associating it with a category.
      *
-     * If no category short name is provided, the default category will be
-     * associated when later accessing the file.
+     * If no category short name is provided, a category lookup (based on
+     * filename is issued. If a matching category is found, it is used. Else,
+     * the default category will be associated when later accessing the file.
      *
      * After a successful addition, fileAdded() signal is emitted.
      *
@@ -55,6 +56,13 @@ namespace Required
         if (!QFile::exists(filename))
         {
             throw ProjectException(tr("File %1 does not exist!").arg(filename));
+        }
+
+        if (categoryShortName.isEmpty())
+        {
+            // find whether a category can be associated with a given filename
+            FileCategory category = FileCategory::getCategoryForFilename(filename);
+            categoryShortName = category.shortName();
         }
 
         // insert new file - create a new entry in the multimap
