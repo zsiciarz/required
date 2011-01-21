@@ -1,5 +1,6 @@
 #include <iostream>
 #include <QFile>
+#include <QRegExp>
 #include "Required/Components/Project/FileCategory.h"
 #include "Required/Components/Project/Project.h"
 #include "Required/Components/Project/ProjectException.h"
@@ -10,7 +11,7 @@ int main(int argc, char *argv[])
 {
     Required::Project project;
     project.setName("My Awesome Project");
-    Required::FileCategory::registerCategory("exe", "Executables");
+    Required::FileCategory::registerCategory("exe", "Executables", QRegExp("\\.exe$"));
     Required::FileCategory::registerCategory("", "Other");
 
     // adding self to the project - nonsense, but this is only a demonstration

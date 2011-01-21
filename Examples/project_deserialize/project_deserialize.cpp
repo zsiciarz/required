@@ -34,11 +34,11 @@ int main(int argc, char *argv[])
     std::cout << "Project name: " << qPrintable(project->name()) << std::endl
               << "--------------------------------------------------------\n";
 
-
     foreach(Required::FileCategory category, project->categories())
     {
         std::cout << qPrintable(category.displayedName()) << "\t\t("
-                  << qPrintable(category.shortName()) << ")\n";
+                  << qPrintable(category.shortName()) << "), matches: "
+                  << qPrintable(category.filenameRegexp().pattern()) << "\n";
         foreach (QString filename, project->filesInCategory(category.shortName()))
         {
             std::cout << "\t" << qPrintable(filename) << "\n";
