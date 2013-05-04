@@ -67,17 +67,17 @@ namespace Required
         m_treeWidget->setColumnCount(1);
         m_treeWidget->setHeaderHidden(true);
         QStringList categoryShortNames = m_project->categoryShortNames();
-        foreach (QString categoryShortName, categoryShortNames)
+        foreach (QString shortName, categoryShortNames)
         {
-            QTreeWidgetItem* categoryItem = getCategoryItem(categoryShortName);
-            foreach (QString filename, m_project->filesInCategory(categoryShortName))
+            QTreeWidgetItem* categoryItem = getCategoryItem(shortName);
+            foreach (QString filename, m_project->filesInCategory(shortName))
             {
                 QTreeWidgetItem* fileItem = getFileItem(filename);
                 categoryItem->addChild(fileItem);
             }
         }
 
-        setWindowTitle(tr("Project: %1").arg(project->name()));
+        setWindowTitle(tr("Project: %1").arg(m_project->name()));
     }
 
     /**
