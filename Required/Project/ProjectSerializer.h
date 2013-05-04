@@ -38,6 +38,9 @@ namespace Required
         Project* deserialize();
 
     private:
+        /**
+         * Non-owning pointer to QIODevice.
+         */
         QIODevice* m_device;
 
         void serializeMetadata(const Project& project, QXmlStreamWriter& writer);

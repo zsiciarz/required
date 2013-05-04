@@ -113,7 +113,8 @@ namespace Required
      * @param project the project to serialize
      * @param writer XML stream writer
      */
-    void ProjectSerializer::serializeMetadata(const Project &project, QXmlStreamWriter &writer)
+    void ProjectSerializer::serializeMetadata(const Project &project,
+                                              QXmlStreamWriter &writer)
     {
         writer.writeStartElement("metadata");
 
@@ -123,7 +124,8 @@ namespace Required
         {
             writer.writeStartElement("category");
             writer.writeAttribute("short-name", category.shortName());
-            writer.writeAttribute("filename-regexp", category.filenameRegexp().pattern());
+            QString regexp = category.filenameRegexp().pattern();
+            writer.writeAttribute("filename-regexp", regexp);
             writer.writeCharacters(category.displayedName());
             writer.writeEndElement();
         }
@@ -138,7 +140,8 @@ namespace Required
      * @param project the project to serialize
      * @param writer XML stream writer
      */
-    void ProjectSerializer::serializeFiles(const Project &project, QXmlStreamWriter &writer)
+    void ProjectSerializer::serializeFiles(const Project &project,
+                                           QXmlStreamWriter &writer)
     {
         writer.writeStartElement("files");
 
@@ -164,7 +167,8 @@ namespace Required
      * @param project the project to deserialize
      * @param reader XML stream reader
      */
-    void ProjectSerializer::readProjectElement(Project &project, QXmlStreamReader &reader)
+    void ProjectSerializer::readProjectElement(Project &project,
+                                               QXmlStreamReader &reader)
     {
         if (!hasRequiredAttribute(reader, "name"))
             return;
@@ -207,7 +211,8 @@ namespace Required
      * @param project the project to deserialize
      * @param reader XML stream reader
      */
-    void ProjectSerializer::readMetadataElement(Project &project, QXmlStreamReader &reader)
+    void ProjectSerializer::readMetadataElement(Project &project,
+                                                QXmlStreamReader &reader)
     {
         reader.readNext();
         while (!reader.atEnd())
@@ -241,7 +246,8 @@ namespace Required
      * @param project the project to deserialize
      * @param reader XML stream reader
      */
-    void ProjectSerializer::readCategoriesElement(Project &project, QXmlStreamReader &reader)
+    void ProjectSerializer::readCategoriesElement(Project &project,
+                                                  QXmlStreamReader &reader)
     {
         reader.readNext();
         while (!reader.atEnd())
@@ -275,7 +281,8 @@ namespace Required
      * @param project the project to deserialize
      * @param reader XML stream reader
      */
-    void ProjectSerializer::readCategoryElement(Project &project, QXmlStreamReader &reader)
+    void ProjectSerializer::readCategoryElement(Project &project,
+                                                QXmlStreamReader &reader)
     {
         if (!hasRequiredAttribute(reader, "short-name"))
             return;
@@ -283,10 +290,16 @@ namespace Required
         QString shortName = reader.attributes().value("short-name").toString();
         QString regexpPattern = reader.attributes().value("filename-regexp").toString();
         QString displayedName = reader.readElementText();
-        FileCategory::registerCategory(shortName, displayedName, QRegExp(regexpPattern));
+        FileCategory::registerCategory(
+            shortName,
+            displayedName,
+            QRegExp(regexpPattern)
+        );
 
         if (reader.isEndElement())
+        {
             reader.readNext();
+        }
     }
 
     /**
@@ -295,7 +308,8 @@ namespace Required
      * @param project the project to deserialize
      * @param reader XML stream reader
      */
-    void ProjectSerializer::readFilesElement(Project &project, QXmlStreamReader &reader)
+    void ProjectSerializer::readFilesElement(Project &project,
+                                             QXmlStreamReader &reader)
     {
         reader.readNext();
         while (!reader.atEnd())
@@ -329,7 +343,8 @@ namespace Required
      * @param project the project to deserialize
      * @param reader XML stream reader
      */
-    void ProjectSerializer::readFileElement(Project &project, QXmlStreamReader &reader)
+    void ProjectSerializer::readFileElement(Project &project,
+                                            QXmlStreamReader &reader)
     {
         if (!hasRequiredAttribute(reader, "path"))
             return;
@@ -341,7 +356,9 @@ namespace Required
         reader.readNext();
 
         if (reader.isEndElement())
+        {
             reader.readNext();
+        }
     }
 
     /**
@@ -374,12 +391,16 @@ namespace Required
      * @param reader XML stream reader
      * @param attributeName the name of the attribute
      */
-    bool ProjectSerializer::hasRequiredAttribute(QXmlStreamReader &reader, QString attributeName)
+    bool ProjectSerializer::hasRequiredAttribute(QXmlStreamReader &reader,
+                                                 QString attributeName)
     {
         QXmlStreamAttributes attributes = reader.attributes();
         if (!attributes.hasAttribute(attributeName))
         {
-            reader.raiseError(QObject::tr("<%1> element doesn't have a '%2' attribute").arg(reader.name().toString()).arg(attributeName));
+            reader.raiseError(
+                QObject::tr("<%1> element doesn't have a '%2' attribute")
+                    .arg(reader.name().toString()).arg(attributeName)
+            );
             return false;
         }
 
