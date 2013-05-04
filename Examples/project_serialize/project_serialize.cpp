@@ -1,10 +1,10 @@
 #include <iostream>
 #include <QFile>
 #include <QRegExp>
-#include "Required/Components/Project/FileCategory.h"
-#include "Required/Components/Project/Project.h"
-#include "Required/Components/Project/ProjectException.h"
-#include "Required/Components/Project/ProjectSerializer.h"
+#include "Required/Project/FileCategory.h"
+#include "Required/Project/Project.h"
+#include "Required/Project/ProjectException.h"
+#include "Required/Project/ProjectSerializer.h"
 
 
 int main(int argc, char *argv[])

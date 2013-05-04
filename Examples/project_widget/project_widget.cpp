@@ -1,6 +1,6 @@
 #include <QApplication>
-#include "Required/Components/Project/Project.h"
-#include "Required/Components/Project/ProjectWidget.h"
+#include "Required/Project/Project.h"
+#include "Required/Project/ProjectWidget.h"
 
 int main(int argc, char *argv[])
 {
