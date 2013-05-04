@@ -28,7 +28,8 @@ namespace Required
      * @param displayedName category name to be displayed to the user
      * @param filenameRegexp regular expression for filename matching
      */
-    FileCategory::FileCategory(QString shortName, QString displayedName, QRegExp filenameRegexp):
+    FileCategory::FileCategory(QString shortName, QString displayedName,
+                               QRegExp filenameRegexp):
         m_shortName(shortName),
         m_displayedName(displayedName.isEmpty() ? m_shortName : displayedName),
         m_filenameRegexp(filenameRegexp)
@@ -59,10 +60,10 @@ namespace Required
      * @param displayedName category name to be displayed to the user
      * @param filenameRegexp regular expression for filename matching
      */
-    void FileCategory::registerCategory(QString shortName, QString displayedName, QRegExp filenameRegexp)
+    void FileCategory::registerCategory(QString shortName, QString displayedName,
+                                        QRegExp filenameRegexp)
     {
         FileCategory category(shortName, displayedName, filenameRegexp);
-        // copy-by-value here, since QString members can be safely copied
         s_nameMap[shortName] = category;
     }
 
