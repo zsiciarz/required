@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     {
         if (argc < 2)
         {
-            std::cerr << "No filename given, quitting." << std::endl;
+            std::cerr << "Usage: project_serialize <FILENAME>" << std::endl;
             return 1;
         }
         QFile file(argv[1]);
