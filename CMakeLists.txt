@@ -6,6 +6,14 @@ set(Required_VERSION_MINOR 0)
 set(Required_VERSION_PATCH 0)
 set(Required_VERSION_SUFFIX "-dev")
 
+################################################################################
+#
+# Build options
+#
+################################################################################
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 ################################################################################
 #
@@ -13,10 +21,7 @@ set(Required_VERSION_SUFFIX "-dev")
 #
 ################################################################################
 
-# Qt
-find_package(Qt4 REQUIRED)
-include(${QT_USE_FILE})
-
+find_package(Qt5Widgets REQUIRED)
 
 ################################################################################
 #
