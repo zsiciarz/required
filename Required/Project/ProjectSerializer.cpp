@@ -10,7 +10,7 @@
  * @package Required
  * @version 1.0.0-dev
  * @author Zbigniew Siciarz
- * @date 2010
+ * @date 2010-2013
  * @license http://www.opensource.org/licenses/mit-license.php MIT
  * @since 1.0.0
  */
