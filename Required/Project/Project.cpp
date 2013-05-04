@@ -51,7 +51,9 @@ namespace Required
     void Project::addFile(QString filename, QString categoryShortName)
     {
         if (hasFile(filename))
+        {
             return;
+        }
 
         if (!QFile::exists(filename))
         {
@@ -104,7 +106,9 @@ namespace Required
     void Project::removeFile(QString filename, bool deleteFromDisk)
     {
         if (!hasFile(filename))
+        {
             return;
+        }
 
         // obtain category identifier from the file index
         // the short name is neccessary for the remove() method of QMultiMap
