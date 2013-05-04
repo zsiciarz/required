@@ -24,11 +24,10 @@ include(${QT_USE_FILE})
 #
 ################################################################################
 
-add_subdirectory(Components)
+add_subdirectory(Required)
 
 add_custom_target(examples)
 add_subdirectory(Examples)
-
 
 ################################################################################
 #
