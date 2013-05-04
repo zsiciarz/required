@@ -60,8 +60,8 @@ namespace Required
         }
 
         m_project = project;
-        connect(project, SIGNAL(fileAdded(QString,QString)), SLOT(addFile(QString,QString)));
-        connect(project, SIGNAL(fileRemoved(QString,QString)), SLOT(removeFile(QString,QString)));
+        connect(m_project, &Project::fileAdded, this, &ProjectWidget::addFile);
+        connect(m_project, &Project::fileRemoved, this, &ProjectWidget::removeFile);
 
         // the naive implementation of tree widget goes below
         m_treeWidget->setColumnCount(1);
