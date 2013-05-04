@@ -42,7 +42,9 @@ namespace Required
     ProjectWidget::~ProjectWidget()
     {
         if (hasProject())
+        {
             closeProject();
+        }
     }
 
     /**
@@ -53,7 +55,9 @@ namespace Required
     void ProjectWidget::setProject(Project *project)
     {
         if (hasProject())
+        {
             closeProject();
+        }
 
         m_project = project;
         connect(project, SIGNAL(fileAdded(QString,QString)), SLOT(addFile(QString,QString)));
