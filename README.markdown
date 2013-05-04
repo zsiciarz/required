@@ -18,8 +18,8 @@ Requirements
 
 The following dependencies are required to build the components from source.
 
- * CMake > 2.6
- * Qt > 4.5
+ * CMake >= 2.8.8
+ * Qt >= 5.0
 
 
 License
@@ -32,4 +32,4 @@ is distributed with the components in the LICENSE file.
 Authors
 =======
 
-Zbigniew Siciarz (antyqjon atty gmail dotty com)
+Zbigniew Siciarz (zbigniew @ siciarz.net)
