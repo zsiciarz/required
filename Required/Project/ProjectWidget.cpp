@@ -60,6 +60,7 @@ namespace Required
         }
 
         m_project = project;
+        m_project->setParent(this);
         connect(m_project, &Project::fileAdded, this, &ProjectWidget::addFile);
         connect(m_project, &Project::fileRemoved, this, &ProjectWidget::removeFile);
 
