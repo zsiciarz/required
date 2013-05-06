@@ -12,7 +12,7 @@ public:
     explicit ProjectWidgetDemoWindow(QWidget *parent = 0);
 
 private:
-    Required::Project m_project;
+    Required::Project* m_project;
     Required::ProjectWidget* m_projectWidget;
 };
 
