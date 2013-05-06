@@ -64,7 +64,7 @@ namespace Required
         {
             // find whether a category can be associated with a given filename
             FileCategory category = FileCategory::getCategoryForFilename(filename);
-            categoryShortName = category.shortName();
+            categoryShortName = category.getShortName();
         }
 
         // insert new file - create a new entry in the multimap

@@ -41,7 +41,7 @@ namespace Required
          *
          * @return short name used for lookup etc.
          */
-        QString shortName() const
+        QString getShortName() const
         {
             return m_shortName;
         }
@@ -51,7 +51,7 @@ namespace Required
          *
          * @return displayed name
          */
-        QString displayedName() const
+        QString getDisplayedName() const
         {
             return m_displayedName;
         }
@@ -61,7 +61,7 @@ namespace Required
          *
          * @return filename regexp
          */
-        QRegExp filenameRegexp() const
+        QRegExp getFilenameRegexp() const
         {
             return m_filenameRegexp;
         }

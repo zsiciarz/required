@@ -35,7 +35,7 @@ namespace Required
     class Project : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(QString name READ name WRITE setName)
+        Q_PROPERTY(QString name READ getName WRITE setName)
 
     public:
         explicit Project(QObject* parent = 0);
@@ -45,7 +45,7 @@ namespace Required
          *
          * @return project name
          */
-        QString name() const
+        QString getName() const
         {
             return m_name;
         }

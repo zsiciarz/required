@@ -77,7 +77,7 @@ namespace Required
             }
         }
 
-        setWindowTitle(tr("Project: %1").arg(m_project->name()));
+        setWindowTitle(tr("Project: %1").arg(m_project->getName()));
     }
 
     /**
@@ -141,7 +141,7 @@ namespace Required
 
         // item == 0, that means we have to create one
         FileCategory category = FileCategory::getCategory(categoryShortName);
-        item = new QTreeWidgetItem(QStringList() << category.displayedName());
+        item = new QTreeWidgetItem(QStringList() << category.getDisplayedName());
         // store a pointer to the item in the category => item mapping
         m_categoryItems[categoryShortName] = item;
         m_treeWidget->addTopLevelItem(item);

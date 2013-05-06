@@ -53,7 +53,7 @@ namespace Required
         writer.setAutoFormatting(true);
         writer.writeStartDocument();
         writer.writeStartElement("project");
-        writer.writeAttribute("name", project.name());
+        writer.writeAttribute("name", project.getName());
 
         serializeMetadata(project, writer);
         serializeFiles(project, writer);
@@ -123,10 +123,10 @@ namespace Required
         foreach (FileCategory category, categories)
         {
             writer.writeStartElement("category");
-            writer.writeAttribute("short-name", category.shortName());
-            QString regexp = category.filenameRegexp().pattern();
+            writer.writeAttribute("short-name", category.getShortName());
+            QString regexp = category.getFilenameRegexp().pattern();
             writer.writeAttribute("filename-regexp", regexp);
-            writer.writeCharacters(category.displayedName());
+            writer.writeCharacters(category.getDisplayedName());
             writer.writeEndElement();
         }
         writer.writeEndElement();
