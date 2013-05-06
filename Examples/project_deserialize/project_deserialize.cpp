@@ -31,15 +31,15 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    std::cout << "Project name: " << qPrintable(project->name()) << std::endl
+    std::cout << "Project name: " << qPrintable(project->getName()) << std::endl
               << "--------------------------------------------------------\n";
 
     foreach(Required::FileCategory category, project->categories())
     {
-        std::cout << qPrintable(category.displayedName()) << "\t\t("
-                  << qPrintable(category.shortName()) << "), matches: "
-                  << qPrintable(category.filenameRegexp().pattern()) << "\n";
-        foreach (QString filename, project->filesInCategory(category.shortName()))
+        std::cout << qPrintable(category.getDisplayedName()) << "\t\t("
+                  << qPrintable(category.getShortName()) << "), matches: "
+                  << qPrintable(category.getFilenameRegexp().pattern()) << "\n";
+        foreach (QString filename, project->filesInCategory(category.getShortName()))
         {
             std::cout << "\t" << qPrintable(filename) << "\n";
         }
