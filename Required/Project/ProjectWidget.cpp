@@ -85,7 +85,8 @@ namespace Required
      */
     void ProjectWidget::closeProject()
     {
-        m_project->disconnect(this);
+        disconnect(m_project, &Project::fileAdded, this, &ProjectWidget::addFile);
+        disconnect(m_project, &Project::fileRemoved, this, &ProjectWidget::removeFile);
         // TODO: not sure about deleting the Project object?
         //m_project->deleteLater();
         m_project = 0;
