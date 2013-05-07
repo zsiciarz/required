@@ -65,11 +65,11 @@ namespace Required
         void addFiles(QStringList filenames, QString categoryShortName = "");
         void removeFile(QString filename, bool deleteFromDisk = false);
 
-        QStringList files() const;
-        QFileInfoList fileInfos() const;
-        QStringList filesInCategory(QString categoryShortName) const;
-        FileCategoryList categories() const;
-        QStringList categoryShortNames() const;
+        QStringList getFiles() const;
+        QFileInfoList getFileInfos() const;
+        QStringList getFilesInCategory(QString categoryShortName) const;
+        FileCategoryList getCategories() const;
+        QStringList getCategoryShortNames() const;
 
 
     signals:

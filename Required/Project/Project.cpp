@@ -129,7 +129,7 @@ namespace Required
      *
      * @return list of file names
      */
-    QStringList Project::files() const
+    QStringList Project::getFiles() const
     {
         return m_fileIndex.keys();
     }
@@ -139,10 +139,10 @@ namespace Required
      *
      * @return list of QFileInfo objects for all project files
      */
-    QFileInfoList Project::fileInfos() const
+    QFileInfoList Project::getFileInfos() const
     {
         QFileInfoList infos;
-        foreach(QString filename, files())
+        foreach(QString filename, getFiles())
         {
             infos.append(QFileInfo(filename));
         }
@@ -156,7 +156,7 @@ namespace Required
      * @param categoryShortName internal category identifier
      * @return files in that category
      */
-    QStringList Project::filesInCategory(QString categoryShortName) const
+    QStringList Project::getFilesInCategory(QString categoryShortName) const
     {
         return m_categorizedFiles.values(categoryShortName);
     }
@@ -166,13 +166,13 @@ namespace Required
      *
      * @return category list
      */
-    FileCategoryList Project::categories() const
+    FileCategoryList Project::getCategories() const
     {
-        QStringList shortNames = categoryShortNames();
+        QStringList shortNames = getCategoryShortNames();
         QList<FileCategory> categoryList;
-        foreach (QString categoryShortName, shortNames)
+        foreach (QString shortName, shortNames)
         {
-            categoryList.append(FileCategory::getCategory(categoryShortName));
+            categoryList.append(FileCategory::getCategory(shortName));
         }
 
         return categoryList;
@@ -183,7 +183,7 @@ namespace Required
      *
      * @return list of category short names
      */
-    QStringList Project::categoryShortNames() const
+    QStringList Project::getCategoryShortNames() const
     {
         return m_categorizedFiles.uniqueKeys();
     }

@@ -119,7 +119,7 @@ namespace Required
         writer.writeStartElement("metadata");
 
         writer.writeStartElement("categories");
-        FileCategoryList categories = project.categories();
+        FileCategoryList categories = project.getCategories();
         foreach (FileCategory category, categories)
         {
             writer.writeStartElement("category");
@@ -145,14 +145,14 @@ namespace Required
     {
         writer.writeStartElement("files");
 
-        QStringList categoryShortNames = project.categoryShortNames();
-        foreach (QString categoryShortName, categoryShortNames)
+        QStringList categoryShortNames = project.getCategoryShortNames();
+        foreach (QString shortName, categoryShortNames)
         {
-            QStringList files = project.filesInCategory(categoryShortName);
+            QStringList files = project.getFilesInCategory(shortName);
             foreach (QString filename, files)
             {
                 writer.writeStartElement("file");
-                writer.writeAttribute("category", categoryShortName);
+                writer.writeAttribute("category", shortName);
                 writer.writeAttribute("path", filename);
                 writer.writeEndElement();
             }

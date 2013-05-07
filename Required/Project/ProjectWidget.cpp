@@ -67,11 +67,11 @@ namespace Required
         // the naive implementation of tree widget goes below
         m_treeWidget->setColumnCount(1);
         m_treeWidget->setHeaderHidden(true);
-        QStringList categoryShortNames = m_project->categoryShortNames();
+        QStringList categoryShortNames = m_project->getCategoryShortNames();
         foreach (QString shortName, categoryShortNames)
         {
             QTreeWidgetItem* categoryItem = getCategoryItem(shortName);
-            foreach (QString filename, m_project->filesInCategory(shortName))
+            foreach (QString filename, m_project->getFilesInCategory(shortName))
             {
                 QTreeWidgetItem* fileItem = getFileItem(filename);
                 categoryItem->addChild(fileItem);
