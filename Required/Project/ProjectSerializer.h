@@ -18,17 +18,18 @@
 #ifndef PROJECTSERIALIZER_H
 #define PROJECTSERIALIZER_H
 
+#include "../global.h"
+#include "Project.h"
 #include <QIODevice>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-#include "Project.h"
 
 namespace Required
 {
     /**
      * A class that allows serializing Project objects to XML.
      */
-    class ProjectSerializer
+    class REQUIRED_EXPORT ProjectSerializer
     {
     public:
         explicit ProjectSerializer(QIODevice* device);

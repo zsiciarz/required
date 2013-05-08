@@ -18,6 +18,7 @@
 #ifndef PROJECT_H
 #define PROJECT_H
 
+#include "../global.h"
 #include "FileCategory.h"
 #include <QFileInfoList>
 #include <QList>
@@ -32,7 +33,7 @@ namespace Required
     /**
      * A class implementing basic project management functionality.
      */
-    class Project : public QObject
+    class REQUIRED_EXPORT Project : public QObject
     {
         Q_OBJECT
         Q_PROPERTY(QString name READ getName WRITE setName)

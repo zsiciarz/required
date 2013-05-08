@@ -1,5 +1,6 @@
 # Project library headers
 set(Required_Project_HEADERS
+    global.h
     Project/FileCategory.h
     Project/ProjectException.h
     Project/Project.h

@@ -18,18 +18,19 @@
 #ifndef PROJECTWIDGET_H
 #define PROJECTWIDGET_H
 
+#include "../global.h"
+#include "Project.h"
 #include <QMap>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <QWidget>
-#include "Project.h"
 
 namespace Required
 {
     /**
      * A widget which knows how to display contents of a project.
      */
-    class ProjectWidget : public QWidget
+    class REQUIRED_EXPORT ProjectWidget : public QWidget
     {
         Q_OBJECT
 

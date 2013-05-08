@@ -18,6 +18,7 @@
 #ifndef FILECATEGORY_H
 #define FILECATEGORY_H
 
+#include "../global.h"
 #include <QList>
 #include <QMap>
 #include <QObject>
@@ -29,7 +30,7 @@ namespace Required
     /**
      * Managing categories of files in the project.
      */
-    class FileCategory
+    class REQUIRED_EXPORT FileCategory
     {
     public:
         explicit FileCategory(QString shortName, QString displayedName = "",

@@ -18,6 +18,7 @@
 #ifndef PROJECTEXCEPTION_H
 #define PROJECTEXCEPTION_H
 
+#include "../global.h"
 #include <stdexcept>
 #include <QString>
 
@@ -26,7 +27,7 @@ namespace Required
     /**
      * The base Project-related exception class.
      */
-    class ProjectException : public std::runtime_error
+    class REQUIRED_EXPORT ProjectException : public std::runtime_error
     {
     public:
         ProjectException(QString message):
