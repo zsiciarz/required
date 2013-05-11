@@ -177,6 +177,6 @@ namespace Required
             QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)
         );
         auto category = FileCategory::getCategoryForFilename(filename);
-        addFile(filename, category.getShortName());
+        m_project->addFile(filename, category.getShortName());
     }
 }
