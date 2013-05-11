@@ -1,6 +1,7 @@
 #ifndef PROJECTWIDGETDEMOWINDOW_H
 #define PROJECTWIDGETDEMOWINDOW_H
 
+#include <QCloseEvent>
 #include <QMainWindow>
 #include "Required/Project/Project.h"
 #include "Required/Project/ProjectWidget.h"
@@ -14,6 +15,8 @@ public:
 private:
     Required::Project* m_project;
     Required::ProjectWidget* m_projectWidget;
+
+    void closeEvent(QCloseEvent* event);
 };
 
 #endif // PROJECTWIDGETDEMOWINDOW_H

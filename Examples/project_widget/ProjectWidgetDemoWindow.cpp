@@ -2,6 +2,7 @@
 #include "Required/Project/ProjectSerializer.h"
 #include "Required/Project/ProjectException.h"
 #include "Required/Project/FileCategory.h"
+#include <QDebug>
 #include <QFile>
 #include <QRegExp>
 
@@ -37,4 +38,23 @@ ProjectWidgetDemoWindow::ProjectWidgetDemoWindow(QWidget *parent) :
     m_projectWidget = new Required::ProjectWidget(this);
     m_projectWidget->setProject(m_project);
     setCentralWidget(m_projectWidget);
+}
+
+void ProjectWidgetDemoWindow::closeEvent(QCloseEvent* event)
+{
+    // store project data in file
+    QFile file("project.xml");
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        Required::ProjectSerializer serializer(&file);
+        try
+        {
+            serializer.serialize(*m_project);
+        }
+        catch (Required::ProjectException& e)
+        {
+            qDebug() << e.what();
+        }
+        file.close();
+    }
 }
