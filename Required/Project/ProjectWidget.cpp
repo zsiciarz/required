@@ -18,7 +18,9 @@
 #include "ProjectWidget.h"
 #include "ui_ProjectWidget.h"
 #include "FileCategory.h"
-#include <QVBoxLayout>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QStandardPaths>
 
 namespace Required
 {
@@ -165,5 +167,15 @@ namespace Required
         }
 
         return item;
+    }
+
+    void ProjectWidget::on_btnAddFile_clicked()
+    {
+        QString filename = QFileDialog::getOpenFileName(
+            this,
+            tr("Add file to project"),
+            QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)
+        );
+        addFile(filename);
     }
 }

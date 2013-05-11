@@ -62,6 +62,9 @@ namespace Required
         void addFile(QString filename, QString categoryShortName = "");
         void removeFile(QString filename, QString categoryShortName = "");
 
+    private slots:
+        void on_btnAddFile_clicked();
+
     private:
         /**
          * The actual project instance.
