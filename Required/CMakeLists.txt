@@ -16,6 +16,13 @@ set(Required_Project_SOURCES
     Project/ProjectWidget.cpp
 )
 
+# UI files
+set(Required_Project_UIS
+    Project/ProjectWidget.ui
+)
+
+qt5_wrap_ui(Required_Project_UIHEADERS ${Required_Project_UIS})
+
 # main Project library
-add_library(Required_Project ${Required_Project_HEADERS} ${Required_Project_SOURCES})
+add_library(Required_Project ${Required_Project_HEADERS} ${Required_Project_UIHEADERS} ${Required_Project_SOURCES})
 qt5_use_modules(Required_Project Core Widgets)

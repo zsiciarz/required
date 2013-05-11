@@ -16,6 +16,7 @@
  */
 
 #include "ProjectWidget.h"
+#include "ui_ProjectWidget.h"
 #include "FileCategory.h"
 #include <QVBoxLayout>
 
@@ -27,11 +28,9 @@ namespace Required
      * @param parent parent object
      */
     ProjectWidget::ProjectWidget(QWidget* parent):
-        QWidget(parent), m_project(0), m_treeWidget(new QTreeWidget(this))
+        QWidget(parent), m_project(0), ui(new Ui::ProjectWidget)
     {
-        QVBoxLayout* layout = new QVBoxLayout(this);
-        layout->addWidget(m_treeWidget);
-        setLayout(layout);
+        ui->setupUi(this);
     }
 
     /**
@@ -64,9 +63,6 @@ namespace Required
         connect(m_project, &Project::fileAdded, this, &ProjectWidget::addFile);
         connect(m_project, &Project::fileRemoved, this, &ProjectWidget::removeFile);
 
-        // the naive implementation of tree widget goes below
-        m_treeWidget->setColumnCount(1);
-        m_treeWidget->setHeaderHidden(true);
         QStringList categoryShortNames = m_project->getCategoryShortNames();
         foreach (QString shortName, categoryShortNames)
         {
@@ -91,7 +87,7 @@ namespace Required
         m_project->deleteLater();
         m_project = 0;
 
-        m_treeWidget->clear();
+        ui->treeWidget->clear();
         m_categoryItems.clear();
         m_fileItems.clear();
     }
@@ -145,7 +141,7 @@ namespace Required
         item = new QTreeWidgetItem(QStringList() << category.getDisplayedName());
         // store a pointer to the item in the category => item mapping
         m_categoryItems[categoryShortName] = item;
-        m_treeWidget->addTopLevelItem(item);
+        ui->treeWidget->addTopLevelItem(item);
 
         return item;
     }

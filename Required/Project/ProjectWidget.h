@@ -25,6 +25,12 @@
 #include <QTreeWidgetItem>
 #include <QWidget>
 
+namespace Ui
+{
+    class ProjectWidget;
+}
+
+
 namespace Required
 {
     /**
@@ -63,9 +69,9 @@ namespace Required
         Project* m_project;
 
         /**
-         * The tree widget.
+         * UI class generated from Qt Designer.
          */
-        QTreeWidget* m_treeWidget;
+        Ui::ProjectWidget *ui;
 
         /**
          * A register of top-level items corresponding to category identifiers.
