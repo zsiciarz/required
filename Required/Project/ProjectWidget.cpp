@@ -157,14 +157,12 @@ namespace Required
     QTreeWidgetItem* ProjectWidget::getFileItem(QString filename)
     {
         QTreeWidgetItem* item = m_fileItems[filename];
-        if (item)
+        if (!item)
         {
-            return item;
+            // no item found in the mapping so we create one
+            item = new QTreeWidgetItem(QStringList() << filename);
+            m_fileItems[filename] = item;
         }
-
-        // no item found in the mapping so we create one
-        item = new QTreeWidgetItem(QStringList() << filename);
-        m_fileItems[filename] = item;
 
         return item;
     }
