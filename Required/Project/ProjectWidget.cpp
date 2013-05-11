@@ -44,6 +44,8 @@ namespace Required
         {
             closeProject();
         }
+
+        delete ui;
     }
 
     /**
