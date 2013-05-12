@@ -18,6 +18,7 @@
 #include "ProjectWidget.h"
 #include "ui_ProjectWidget.h"
 #include "FileCategory.h"
+#include <QDir>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QStandardPaths>
@@ -178,5 +179,21 @@ namespace Required
         );
         auto category = FileCategory::getCategoryForFilename(filename);
         m_project->addFile(filename, category.getShortName());
+    }
+
+    void ProjectWidget::on_btnAddDirectory_clicked()
+    {
+        QString dirName = QFileDialog::getExistingDirectory(
+            this,
+            tr("Add all files in a directory to project"),
+            QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)
+        );
+        QDir dir(dirName);
+        foreach (auto fileinfo, dir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot))
+        {
+            auto filename = fileinfo.absoluteFilePath();
+            auto category = FileCategory::getCategoryForFilename(filename);
+            m_project->addFile(filename, category.getShortName());
+        }
     }
 }
