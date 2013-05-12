@@ -65,6 +65,10 @@ namespace Required
     private slots:
         void on_btnAddFile_clicked();
         void on_btnAddDirectory_clicked();
+        void on_btnOpenFile_clicked();
+
+    signals:
+        void fileOpened(QString filename);
 
     private:
         /**

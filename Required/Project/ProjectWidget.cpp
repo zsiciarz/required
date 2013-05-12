@@ -20,7 +20,6 @@
 #include "FileCategory.h"
 #include <QDir>
 #include <QFileDialog>
-#include <QMessageBox>
 #include <QStandardPaths>
 
 namespace Required
@@ -195,5 +194,10 @@ namespace Required
             auto category = FileCategory::getCategoryForFilename(filename);
             m_project->addFile(filename, category.getShortName());
         }
+    }
+
+    void ProjectWidget::on_btnOpenFile_clicked()
+    {
+        emit fileOpened("test");
     }
 }
