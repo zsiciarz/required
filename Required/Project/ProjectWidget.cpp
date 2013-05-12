@@ -215,6 +215,8 @@ namespace Required
 
     void ProjectWidget::on_btnOpenFile_clicked()
     {
-        emit fileOpened("test");
+        int column = ui->treeWidget->currentColumn();
+        QString filename = ui->treeWidget->currentItem()->text(column);
+        emit fileOpened(filename);
     }
 }
