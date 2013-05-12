@@ -35,9 +35,15 @@ namespace Required
         QWidget(parent), m_project(0), ui(new Ui::ProjectWidget)
     {
         ui->setupUi(this);
+
+        // For the next two connect calls we make the following assumption:
+        // top-level items are categories and have no parent, therefore if
+        // item->parent() is truthy, this item holds a filename
+        connect(ui->treeWidget, &QTreeWidget::itemClicked, [&] (QTreeWidgetItem* item, int column) {
+            ui->btnOpenFile->setEnabled(static_cast<bool>(item->parent()));
+        });
+
         connect(ui->treeWidget, &QTreeWidget::itemDoubleClicked, [&] (QTreeWidgetItem* item, int column) {
-            // top-level items are categories and have no parent;
-            // only items with parents can store filenames
             if (item->parent())
             {
                 auto filename = item->text(column);
