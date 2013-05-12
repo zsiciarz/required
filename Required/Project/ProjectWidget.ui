@@ -51,6 +51,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnOpenFile">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Open file</string>
        </property>
