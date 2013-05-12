@@ -21,6 +21,8 @@
 #include <QDir>
 #include <QFileDialog>
 #include <QStandardPaths>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 
 namespace Required
 {
@@ -33,6 +35,15 @@ namespace Required
         QWidget(parent), m_project(0), ui(new Ui::ProjectWidget)
     {
         ui->setupUi(this);
+        connect(ui->treeWidget, &QTreeWidget::itemDoubleClicked, [&] (QTreeWidgetItem* item, int column) {
+            // top-level items are categories and have no parent;
+            // only items with parents can store filenames
+            if (item->parent())
+            {
+                auto filename = item->text(column);
+                emit fileOpened(filename);
+            }
+        });
     }
 
     /**
