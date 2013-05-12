@@ -10,8 +10,8 @@
 ProjectWidgetDemoWindow::ProjectWidgetDemoWindow(QWidget *parent) :
     QMainWindow(parent)
 {
-    Required::FileCategory::registerCategory("txt", "Text files", QRegExp("*.txt", Qt::CaseSensitive, QRegExp::Wildcard));
-    Required::FileCategory::registerCategory("json", "JSON data", QRegExp("*.json", Qt::CaseSensitive, QRegExp::Wildcard));
+    Required::FileCategory::registerCategory("txt", "Text files", QRegExp(".*\\.txt$"));
+    Required::FileCategory::registerCategory("json", "JSON data", QRegExp(".*\\.json$"));
 
     // load project data from file
     QFile file("project.xml");
