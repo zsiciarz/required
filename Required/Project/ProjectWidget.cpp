@@ -152,17 +152,15 @@ namespace Required
     QTreeWidgetItem* ProjectWidget::getCategoryItem(QString categoryShortName)
     {
         QTreeWidgetItem* item = m_categoryItems[categoryShortName];
-        if (item)
+        if (!item)
         {
-            return item;
+            // item == 0, that means we have to create one
+            FileCategory category = FileCategory::getCategory(categoryShortName);
+            item = new QTreeWidgetItem(QStringList() << category.getDisplayedName());
+            // store a pointer to the item in the category => item mapping
+            m_categoryItems[categoryShortName] = item;
+            ui->treeWidget->addTopLevelItem(item);
         }
-
-        // item == 0, that means we have to create one
-        FileCategory category = FileCategory::getCategory(categoryShortName);
-        item = new QTreeWidgetItem(QStringList() << category.getDisplayedName());
-        // store a pointer to the item in the category => item mapping
-        m_categoryItems[categoryShortName] = item;
-        ui->treeWidget->addTopLevelItem(item);
 
         return item;
     }
